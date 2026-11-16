@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Programme Server</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="label">STUDY PROGRAMME</p>
+      <h1>Software Development</h1>
+      <p>
+        Our programme introduces students to web programming,
+        databases and software engineering. Students learn how to
+        build applications and understand how servers work.
+      </p>
+    </header>
+
+    <section aria-labelledby="api-title">
+      <h2 id="api-title">Try the API</h2>
+      <p>Select a button to see the response status and body.</p>
+
+      <div class="buttons">
+        <button type="button" data-url="/api/courses">Courses</button>
+        <button type="button" data-url="/api/status">Server status</button>
+        <button type="button" data-url="/api/headers">Request headers</button>
+        <button type="button" data-url="/api/subscribe" data-method="POST">
+          Subscribe (POST)
+        </button>
+        <button type="button" data-url="/api/admin">Admin (403)</button>
+        <button type="button" data-url="/api/stats">Request count</button>
+        <button type="button" data-url="/api/missing">Missing route (404)</button>
+      </div>
+
+      <h2>Response</h2>
+      <pre id="output" aria-live="polite">Choose a route to begin.</pre>
+    </section>
+  </main>
+</body>
+</html>
