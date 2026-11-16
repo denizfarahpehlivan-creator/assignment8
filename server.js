@@ -27,6 +27,49 @@ app.use((req, res, next) => {
 app.get("/hello", (req, res) => {
   res.type("text/plain").send("Hello from Deniz's server");
 });
+const courses = [
+  { id: 1, title: "Web Programming", credits: 6 },
+  { id: 2, title: "Database Systems", credits: 5 },
+  { id: 3, title: "Software Engineering", credits: 5 },
+];
+
+app.get("/api/courses", (req, res) => {
+  res.json(courses);
+});
+
+app.get("/api/status", (req, res) => {
+  res.json({
+    status: "ok",
+    nodeVersion: process.version,
+    uptimeSeconds: Math.floor(process.uptime()),
+  });
+});
+
+app.get("/api/headers", (req, res) => {
+  res.json({
+    userAgent: req.get("User-Agent") || null,
+    accept: req.get("Accept") || null,
+  });
+});
+
+app.get("/api/stats", (req, res) => {
+  res.json({ requestsServed });
+});
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain').send('User-agent: *\nDisallow: /api/admin');
+});
+
+app.get('/old-page', (req, res) => {
+  res.redirect('/hello');
+});
+
+app.post('/api/subscribe', (req, res) => {
+  res.status(201).json({ subscribed: true });
+});
+
+app.get('/api/admin', (req, res) => {
+  res.status(403).json({ error: 'Forbidden' });
+});
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
